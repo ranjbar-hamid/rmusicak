@@ -1,0 +1,393 @@
+:root {
+    --color-primary: rgb(35, 31, 70);
+    --color-2: rgba(255, 255, 255, 0.2);
+    --color-3: rgba(255, 255, 255, 0.3);
+    --color-4: rgba(255, 255, 255, 0.4);
+    --color-5: rgba(255, 255, 255, 0.5);
+    --color-6: rgba(255, 255, 255, 0.6);
+    --color-7: rgba(255, 255, 255, 0.7);
+    --color-link-border: gray;
+}
+
+@font-face {
+    font-family: vazir;
+    src: url(Font/Vazir.ttf);
+}
+
+h1,
+h2,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-primary);
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header" "main" "footer";
+
+    justify-content: stretch;
+    align-content: baseline;
+
+    height: 100vh;
+}
+
+header {
+    background-color: var(--color-5);
+    position: relative;
+    grid-area: header;
+    top: 0;
+    padding: 0.5rem 4%;
+    z-index: 10;
+}
+
+main {
+    grid-area: main;
+    margin-top: 3rem;
+    padding: 0 5%;
+}
+
+footer {
+    background-color: var(--color-6);
+
+    grid-area: footer;
+
+    padding: 0.2rem;
+
+    bottom: 0;
+
+    justify-content: center;
+}
+
+ul {
+    padding: 3.5rem;
+    padding-top: 0;
+    list-style: none;
+    flex-direction: column;
+    justify-content: baseline;
+    gap: 0.3rem;
+}
+
+li {
+    background-color: var(--color-6);
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    transition: transform 75ms;
+}
+
+li:hover {
+    transform: scale(1.01);
+}
+
+img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 0.3rem;
+    border: 0.15rem solid var(--color-primary);
+    box-shadow: 0 0 0.1rem gold;
+}
+
+.about {
+    background-color: var(--color-6);
+    margin-top: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.4rem;
+}
+
+
+
+.nav-link {
+    margin: 0.03rem 0.4rem;
+    border: 0;
+    border-bottom: solid 0.1rem var(--color-link-border);
+    opacity: 0.6;
+    min-width: 1.6rem;
+    transition: transform 50ms, opacity 400ms, box-shadow 400ms;
+}
+
+.nav-link:hover {
+    opacity: 0.9;
+}
+
+.input-box {
+    background-color: var(--color-7);
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.t-box {
+    border: 0;
+}
+
+.t-box:focus {
+    outline: none;
+}
+
+.btn {
+    background-color: transparent;
+    padding-top: 0.2rem;
+}
+
+.t-button {
+    border: 0.1rem solid;
+    border-radius: 0.4rem;
+}
+
+.s-button {
+    border: 0;
+    margin-right: 0.1rem;
+}
+
+.s-button:hover {
+    transform: scale(1.1);
+}
+
+.s-button:active {
+    transform: scale(1.2);
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.card-btn {
+    display: flex;
+    color: black;
+    padding: 0.4rem 0.5rem;
+}
+
+.card-btn:hover {
+    transform: scale(1.05);
+}
+
+.card-btn:active {
+    transform: scale(1.08);
+}
+
+.card-play {
+    background-color: transparent;
+    border: 0;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.card-play>* {
+    position: absolute;
+    opacity: 0.7;
+}
+
+.card-play>img {
+    filter: invert(25%);
+}
+
+label {
+    display: inline;
+    width: 6rem;
+}
+
+audio {
+    display: flex;
+    border-radius: 30rem;
+    box-shadow: 0 0 0.2rem;
+    width: 85%;
+    margin: 0 0.5rem;
+}
+
+#pImage {
+    box-shadow: 0 0 0.2rem;
+    margin: 0 1rem;
+}
+
+.error {
+    color: var(--color-5);
+    margin: auto;
+    margin-top: 4rem;
+    font-family: tahoma;
+}
+
+
+.f-vazir {
+    font-family: vazir;
+}
+
+.f-title {
+    font-family: vazir;
+    font-size: 0.7rem;
+}
+
+.f-input {
+    font-family: vazir;
+    font-size: 1rem;
+}
+
+.banner {
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.01rem 0.2rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.back-blur {
+    backdrop-filter: blur(0.15rem);
+}
+
+.fix {
+    position: fixed;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.bg-tparent {
+    background-color: transparent;
+}
+
+.card-command {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.mainload {
+    filter: blur(1.2rem);
+}
+
+.hide {
+    display: none;
+}
+
+.loader {
+    position: fixed;
+    color: var(--color-7);
+    place-self: center;
+    margin: auto;
+    border: 0.4rem solid var(--color-7);
+    border-radius: 50%;
+    border-top: 0.4rem solid var(--color-2);
+    width: 2rem;
+    height: 2rem;
+    animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .nav-link:hover {
+        border-bottom: solid 0.1rem;
+        transform: scale(1.03);
+    }
+
+    .nav-link:active {
+        border-bottom: solid 0.1rem;
+        transform: scale(1.07);
+    }
+
+    .active-link {
+        border-bottom: solid 0.1rem darkblue;
+        transform: scale(1.0.4);
+    }
+
+    .lg-none {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0.75rem 0;
+    }
+
+    nav {
+        padding: 0.2rem 1rem;
+    }
+
+    main {
+        padding: 0.5rem;
+    }
+
+    ul {
+        padding: 0 0 2.7rem 0;
+    }
+
+    .nav-link {
+        margin: 0.2rem 0 0 0;
+        border-radius: 0.5rem;
+        border: 0.1rem solid var(--color-link-border);
+    }
+
+    .nav-link:hover,
+    .active-link {
+        background-color: var(--color-7);
+        border: 0.1rem solid darkblue;
+    }
+
+    .nav-link:active {
+        transform: scale(1.01);
+    }
+
+    .banner {
+        padding: 0 1rem;
+    }
+
+    .sm-col {
+        flex-direction: column;
+    }
+
+    .sm-pad-link {
+        padding: 0.6rem;
+    }
+
+    .sm-none {
+        display: none;
+    }
+
+    .input-box {
+        margin-top: 0.3rem;
+    }
+
+    .about {
+        margin: 1rem 0.4rem 3.2rem 0.4rem;
+    }
+
+    label {
+        display: inline;
+        width: 3rem;
+    }
+}

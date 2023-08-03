@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="رادیو موزیکک | رمیکس آلبوم های موسیقی ایران و جهان" />
+  <link rel="stylesheet" href="UI/ui.css" />
+  <title>رادیو موزیکک</title>
+</head>
+
+<body>
+  <div id="ld" class="loader shadow-sm"></div>
+  <header class="shadow-sm back-blur d-flex sm-col fix w-100">
+    <div class="banner d-flex">
+      <button class="nav-link f-title bg-tparent active-link" tg="linkGroup" onclick="ml.getMusicList();">
+        <h1>موزیکـک</h1>
+      </button>
+      <button class="btn lg-none t-button" aria-label="toggle"></button>
+    </div>
+    <nav class="sm-none d-flex sm-col">
+      <button class="nav-link f-title bg-tparent sm-pad-link" tg="linkGroup" onclick="ml.genre();">
+        <h2>آرشیو</h2>
+      </button>
+      <button class="nav-link f-title bg-tparent sm-pad-link" tg="linkGroup" onclick="ml.artists();">
+        <h2>هنرمندان</h2>
+      </button>
+      <button class="nav-link f-title bg-tparent sm-pad-link" tg="linkGroup" onclick="ml.connect()">
+        <h2>ارتباط با ما</h2>
+      </button>
+      <div class="input-box d-flex sm-pad-link">
+        <input id="searchBox" class="t-box border-0 w-100 f-input bg-tparent" type="text" placeholder="جستجو..."
+          onkeypress="if(event.keyCode==13)ml.search(searchBox.value)" />
+        <button id="btnSearch" class="btn s-button" type="button" onclick="ml.search(searchBox.value)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main class="mainload"></main>
+  <footer class="back-blur d-flex fix w-100">
+    <audio id="player" controls></audio>
+    <img id="pImage" src1="https://drive.google.com/u/0/uc?id=gEaw-VFd9sZiCD54sfIO2FS2sROaiUo&export=download" />
+  </footer>
+  <script src="UI/ui.js"></script>
+</body>
+
+</html>
