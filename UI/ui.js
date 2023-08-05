@@ -1,3 +1,4 @@
+const state = {};
 class Utility {
   static timer = (ms) => new Promise((res) => setTimeout(res, ms));
   static iconMenu = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -66,11 +67,15 @@ class MusicList {
       if (type == "genre") http.open("Get", url + "?type=genreList");
       if (type == "artists") http.open("Get", url + "?type=artists");
       http.send();
-      http.onerror = (e, r) =>
-        (document.getElementsByTagName(
+      http.onerror = (e, r) => {
+        document.getElementsByTagName(
           "main"
-        )[0].innerHTML = `<h3 class='error'>خطای ارتباطی</h3>`);
+        )[0].innerHTML = `<h3 class='error'>خطای ارتباطی</h3>`;
+        document.getElementsByTagName("main")[0].classList.remove("mainload");
+        ld.classList.add("hide");
+      };
       http.onload = () => {
+        createHistory();
         const data = JSON.parse(http.responseText);
         let ul = "<ul class='d-flex'>";
         let htmlListData = "";
@@ -85,8 +90,8 @@ class MusicList {
           </button>
           <label><strong>آلبوم ${item.Title}</strong></label>
           </div class="card">
-            <label><a class="card-btn card-lbl" href="#" onclick="ml.search(this.text)">${item.Artist}</a></label>
-            <label><a class="card-btn card-lbl" href="#" onclick="ml.search(this.text)">${item.Genre}</a></label>
+            <label><a class="card-btn card-lbl" onclick="ml.search(this.text)">${item.Artist}</a></label>
+            <label><a class="card-btn card-lbl" onclick="ml.search(this.text)">${item.Genre}</a></label>
           </div>
           <div class="card">
             <div>${item.Duration}</div>
@@ -101,7 +106,7 @@ class MusicList {
           htmlListData = data.map((item) => {
             return `<li class='shadow-sm f-vazir d-flex' onclick="ml.search(this.getAttribute('name'))" name="${item}">
           <div class="card-command">
-            <a class="card-btn" href="#">${item}</a></div>
+            <a class="card-btn">${item}</a></div>
           </div>
           </li>`;
           });
@@ -113,7 +118,6 @@ class MusicList {
         document.getElementsByTagName("main")[0].innerHTML = ul;
         document.getElementsByTagName("main")[0].classList.remove("mainload");
         ld.classList.add("hide");
-        createHistory();
       };
     };
   }
@@ -123,8 +127,7 @@ class MusicList {
   }
 
   search(e) {
-    const sKey = e;
-    this.getData("list", sKey);
+    this.getData("list", e);
   }
   artists() {
     this.getData("artists", "");
@@ -134,6 +137,7 @@ class MusicList {
   }
 
   connect() {
+    createHistory();
     document.getElementsByTagName(
       "main"
     )[0].innerHTML = `<article class="about d-flex">
@@ -153,35 +157,38 @@ class MusicList {
       </div>
     </article>`;
     document.title = Utility.title + " - " + "معرفی";
-    createHistory();
   }
 }
 const ml = new MusicList();
 ml.getMusicList();
 
-createHistory = () => {
-  history.pushState(
-    {
-      main: document.getElementsByTagName("main")[0].innerHTML,
-      headers: document.getElementsByTagName("header")[0].innerHTML,
-      searchVal: searchBox.value,
-      title: document.title,
-    },
-    "",
-    ""
-  );
-};
+function createHistory() {
+  {
+    console.log(history);
+    history.pushState(
+      {
+        main: document.getElementsByTagName("main")[0].innerHTML,
+        headers: document.getElementsByTagName("header")[0].innerHTML,
+        searchVal: searchBox.value,
+        title: document.title,
+      },
+      "",
+      ""
+    );
+  }
+}
 
 window.addEventListener("popstate", (event) => {
-  console.log(history);
-  if (event.state) {
-    console.log(event.state);
+  console.log(event);
+  if (!event.state.main) {
+    ml.getMusicList();
+  } else {
     document.getElementsByTagName("main")[0].innerHTML = event.state.main;
-    document.getElementsByTagName("header")[0].innerHTML = event.state.headers;
-    document.title = event.state.title;
-    new navbar();
-    searchBox.value = event.state.searchVal;
   }
+  document.getElementsByTagName("header")[0].innerHTML = event.state.headers;
+  document.title = event.state.title;
+  new navbar();
+  searchBox.value = event.state.searchVal;
 });
 
 function play(e) {
