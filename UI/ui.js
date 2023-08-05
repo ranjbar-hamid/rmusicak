@@ -163,8 +163,6 @@ const ml = new MusicList();
 ml.getMusicList();
 
 function createHistory() {
-  {
-    console.log(history);
     history.pushState(
       {
         main: document.getElementsByTagName("main")[0].innerHTML,
@@ -175,11 +173,9 @@ function createHistory() {
       "",
       ""
     );
-  }
 }
 
 window.addEventListener("popstate", (event) => {
-  console.log(event);
   if (!event.state.main) {
     ml.getMusicList();
   } else {
@@ -194,6 +190,5 @@ window.addEventListener("popstate", (event) => {
 function play(e) {
   player.src = e.id;
   player.play();
-  console.log(e);
   pImage.src = e.getAttribute("d-i");
 }
