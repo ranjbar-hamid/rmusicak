@@ -1,146 +1,167 @@
-const state = {};
-class Utility {
-  static timer = (ms) => new Promise((res) => setTimeout(res, ms));
-  static iconMenu = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+
+const route = (event) => {
+  event = event || window.event;
+  event.preventDefault();
+  window.history.pushState({}, "", event.target.href);
+  getData();
+};
+
+const routes = {
+  404: "/404.html",
+  "/": "?type=list",
+  "/index.html": "?type=list",
+  "/archive": "?type=genreList",
+  "/artists": "?type=artists",
+  "/about": "?about",
+};
+
+Utility = {
+  iconMenu: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-    </svg>`;
-  static iconClose = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+    </svg>`,
+  iconClose: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-    </svg>`;
-  static iconDownload = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>`;
-  static iconPlay = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+    </svg>`,
+  iconDownload: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>`,
+  iconPlay: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-  </svg>`;
-  static loading = `<div class="loader">loading</div>`;
-  static title = "رادیو موزیکک";
-}
+  </svg>`,
+  loading: `<div class="loader">loading</div>`,
+  title: "رادیو موزیکک",
+};
 
-class navbar {
-  constructor() {
-    const navTG = document.querySelector("[aria-label=toggle]"),
-      navOut = document.getElementsByTagName("main"),
-      nav = document.getElementsByTagName("nav"),
-      links = document.querySelectorAll("[tg=linkGroup]");
+const navbar = (eID) => {
+  const navTG = document.querySelector("[aria-label=toggle]"),
+    navOut = document.getElementsByTagName("main"),
+    nav = document.getElementsByTagName("nav"),
+    links = document.querySelectorAll("[tg=linkGroup]");
 
-    navTG.innerHTML = Utility.iconMenu;
+  navTG.innerHTML = Utility.iconMenu;
 
-    navTG.addEventListener("click", () => {
-      navToggle("1");
+  navTG.addEventListener("click", () => {
+    navToggle("1");
+  });
+
+  for (const l of links) {
+    l.addEventListener("click", () => {
+      for (const r of links) r.classList.remove("active-link");
+      l.classList.add("active-link");
+      navToggle(0);
     });
-
-    for (const l of links) {
-      l.addEventListener("click", () => {
-        for (const r of links) r.classList.remove("active-link");
-        l.classList.add("active-link");
-        navToggle(0);
-      });
-    }
-
-    navOut[0].addEventListener("click", () => {
-      navToggle("0");
-    });
-
-    function navToggle(e) {
-      e == "0" ? nav[0].classList.remove("sm-none") : null;
-      nav[0].classList.contains("sm-none")
-        ? (nav[0].classList.remove("sm-none"),
-          (navTG.innerHTML = Utility.iconClose))
-        : (nav[0].classList.add("sm-none"),
-          (navTG.innerHTML = Utility.iconMenu));
-    }
   }
-}
-const nb = new navbar();
+  if (eID) {
+    for (const r of links) r.classList.remove("active-link");
+    document.getElementById(eID).classList.add("active-link");
+  }
 
-class MusicList {
-  constructor() {
-    const url =
-      "https://script.google.com/macros/s/AKfycbw8zy5vVKWyQfO4ov6GBuuplfZJL0Ao7yku5L6gddLs41NSSPxmN7OM426SI0j4IqGrHg/exec";
-    document.title = Utility.title;
-    const http = new XMLHttpRequest();
-    this.getData = async (type, sKey) => {
-      document.getElementsByTagName("main")[0].classList.add("mainload");
-      ld.classList.remove("hide");
-      if (type == "list")
-        http.open("Get", url + "?type=list&searchKey=" + sKey);
-      if (type == "genre") http.open("Get", url + "?type=genreList");
-      if (type == "artists") http.open("Get", url + "?type=artists");
-      http.send();
-      http.onerror = (e, r) => {
-        document.getElementsByTagName(
-          "main"
-        )[0].innerHTML = `<h3 class='error'>خطای ارتباطی</h3>`;
-        document.getElementsByTagName("main")[0].classList.remove("mainload");
-        ld.classList.add("hide");
-      };
-      http.onload = () => {
-        createHistory();
-        const data = JSON.parse(http.responseText);
-        let ul = "<ul class='d-flex'>";
-        let htmlListData = "";
-        if (type == "list") {
-          (document.title = Utility.title + " - " + sKey),
-            (htmlListData = data.map((item) => {
-              return `<li class='shadow-sm f-vazir d-flex'>
-          <div class="card">
-            <button class="card-btn card-play" id='${item.URL}' d-i='${item.PicID}' onClick="play(this)">
-            <img fetchpriority="low" src="${item.PicID}" alt="">
-          <div>${Utility.iconPlay}</div>
-          </button>
-          <label><strong>آلبوم ${item.Title}</strong></label>
-          </div class="card">
-            <label><a class="card-btn card-lbl" onclick="ml.search(this.text)">${item.Artist}</a></label>
-            <label><a class="card-btn card-lbl" onclick="ml.search(this.text)">${item.Genre}</a></label>
-          </div>
-          <div class="card">
-            <div>${item.Duration}</div>
-            <a href="${item.URL}" class="card-btn card-lbl" aria-label="دانلود">${Utility.iconDownload}</a>
-          </div>
-          </li>`;
-            }));
-        }
-        if ((type == "genre") | (type == "artists")) {
-          document.title =
-            Utility.title + " - " + (type == "genre" ? "آرشیو" : "هنرمندان");
-          htmlListData = data.map((item) => {
-            return `<li class='shadow-sm f-vazir d-flex' onclick="ml.search(this.getAttribute('name'))" name="${item}">
+  navOut[0].addEventListener("click", () => {
+    navToggle("0");
+  });
+
+  navToggle = (e) => {
+    e == "0" ? nav[0].classList.remove("sm-none") : null;
+    nav[0].classList.contains("sm-none")
+      ? (nav[0].classList.remove("sm-none"),
+        (navTG.innerHTML = Utility.iconClose))
+      : (nav[0].classList.add("sm-none"), (navTG.innerHTML = Utility.iconMenu));
+  };
+};
+navbar();
+
+const getData = async () => {
+  const url =
+    "https://script.google.com/macros/s/AKfycbw8zy5vVKWyQfO4ov6GBuuplfZJL0Ao7yku5L6gddLs41NSSPxmN7OM426SI0j4IqGrHg/exec";
+  document.title = Utility.title;
+  const http = new XMLHttpRequest();
+
+  document.getElementsByTagName("main")[0].classList.add("mainload");
+  ld.classList.remove("hide");
+  let ul = "<ul class='d-flex'>";
+  let htmlListData = "";
+
+  const path = window.location.pathname;
+  const route = routes[path] || routes[404];
+  const hash = window.location.hash.substring(1);
+  if (routes[path] == "?about") {
+    about();
+    document.getElementsByTagName("main")[0].classList.remove("mainload");
+    ld.classList.add("hide");
+    navbar("aboutLink");
+    return;
+  }
+  http.open("Get", url + route + "&searchKey=" + hash);
+  http.send();
+  http.onerror = (e, r) => {
+    document.getElementsByTagName(
+      "main"
+    )[0].innerHTML = `<h3 class='error'>خطای ارتباطی</h3>`;
+    document.getElementsByTagName("main")[0].classList.remove("mainload");
+    ld.classList.add("hide");
+  };
+  http.onload = () => {
+    const data = JSON.parse(http.responseText);
+    if (routes[path] == "?type=list") {
+      document.title = Utility.title;
+      htmlListData = listMap(data);
+      navbar("mLink");
+    }
+    if (
+      (routes[path] == "?type=genreList") |
+      (routes[path] == "?type=artists")
+    ) {
+      document.title =
+        Utility.title +
+        " - " +
+        (routes[path] == "?type=genreList" ? "آرشیو" : "هنرمندان");
+      routes[path] == "?type=genreList"
+        ? navbar("archiveLink")
+        : navbar("artistsLink");
+      htmlListData = data.map((item) => {
+        return `<li class='shadow-sm f-vazir d-flex' onclick="window.event.target.href='/#${item}' ,route()" name="${item}">
           <div class="card-command">
             <a class="card-btn">${item}</a></div>
           </div>
           </li>`;
-          });
-        }
-        for (const item of htmlListData) {
-          ul += item;
-        }
-        ul += "</ul>";
-        document.getElementsByTagName("main")[0].innerHTML = ul;
-        document.getElementsByTagName("main")[0].classList.remove("mainload");
-        ld.classList.add("hide");
-      };
-    };
-  }
-  getMusicList() {
-    searchBox.value = "";
-    this.getData("list", "");
-  }
+      });
+    }
+    for (const item of htmlListData) {
+      ul += item;
+    }
+    ul += "</ul>";
+    document.getElementsByTagName("main")[0].innerHTML = ul;
+    document.getElementsByTagName("main")[0].classList.remove("mainload");
+    ld.classList.add("hide");
+  };
+  navbar();
+};
 
-  search(e) {
-    this.getData("list", e);
-  }
-  artists() {
-    this.getData("artists", "");
-  }
-  genre() {
-    this.getData("genre", "");
-  }
+const listMap = (data) => {
+  return data.map((item) => {
+    return `<li class='shadow-sm f-vazir d-flex'>
+  <div class="card">
+    <button class="card-btn card-play" id='${item.URL}' d-i='${item.PicID}' onClick="play(this)">
+    <img fetchpriority="low" src="${item.PicID}" alt="" loading="lazy">
+  <div>${Utility.iconPlay}</div>
+  </button>
+  <label><strong>آلبوم ${item.Title}</strong></label>
+  </div class="card">
+    <label><a class="card-btn card-lbl" onclick="window.event.target.href='/#${item.Artist}' ,route()">${item.Artist}</a></label>
+    <label><a class="card-btn card-lbl" onclick="window.event.target.href='/#${item.Genre}' ,route()">${item.Genre}</a></label>
+  </div>
+  <div class="card">
+    <div>${item.Duration}</div>
+    <a href="${item.URL}" class="card-btn card-lbl" aria-label="دانلود">${Utility.iconDownload}</a>
+  </div>
+  </li>`;
+  });
+};
 
-  connect() {
-    createHistory();
-    document.getElementsByTagName(
-      "main"
-    )[0].innerHTML = `<article class="about d-flex">
+about = () => {
+  document.getElementsByTagName(
+    "main"
+  )[0].innerHTML = `<article class="about d-flex">
       <h3 class="f-vazir">رادیو موزیکک</h3>
       <p class="f-vazir">رسانه موسیقی</p>
       <div>
@@ -156,39 +177,16 @@ class MusicList {
         </a>
       </div>
     </article>`;
-    document.title = Utility.title + " - " + "معرفی";
-  }
-}
-const ml = new MusicList();
-ml.getMusicList();
-
-function createHistory() {
-    history.pushState(
-      {
-        main: document.getElementsByTagName("main")[0].innerHTML,
-        headers: document.getElementsByTagName("header")[0].innerHTML,
-        searchVal: searchBox.value,
-        title: document.title,
-      },
-      "",
-      ""
-    );
-}
-
-window.addEventListener("popstate", (event) => {
-  if (!event.state.main) {
-    ml.getMusicList();
-  } else {
-    document.getElementsByTagName("main")[0].innerHTML = event.state.main;
-  }
-  document.getElementsByTagName("header")[0].innerHTML = event.state.headers;
-  document.title = event.state.title;
-  new navbar();
-  searchBox.value = event.state.searchVal;
-});
+  document.title = Utility.title + " - " + "معرفی";
+};
 
 function play(e) {
   player.src = e.id;
   player.play();
   pImage.src = e.getAttribute("d-i");
 }
+
+window.onpopstate = getData;
+window.route = route;
+
+getData();
