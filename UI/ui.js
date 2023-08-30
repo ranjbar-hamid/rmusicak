@@ -1,5 +1,3 @@
-const timer = (ms) => new Promise((res) => setTimeout(res, ms));
-
 const route = (event) => {
   event = event || window.event;
   event.preventDefault();
@@ -8,12 +6,12 @@ const route = (event) => {
 };
 
 const routes = {
-  404: "/404.html",
   "/": "?type=list",
-  "/index.html": "?type=list",
-  "/archive": "?type=genreList",
-  "/artists": "?type=artists",
-  "/about": "?about",
+  "": "?type=list",
+  main: "?type=list",
+  archive: "?type=genreList",
+  artists: "?type=artists",
+  about: "?about",
 };
 
 Utility = {
@@ -80,18 +78,19 @@ const getData = async () => {
   ld.classList.remove("hide");
   let ul = "<ul class='d-flex'>";
   let htmlListData = "";
-
-  const path = window.location.pathname;
-  const route = routes[path] || routes[404];
-  const hash = window.location.hash.substring(1);
-  if (routes[path] == "?about") {
+  const hash = window.location.hash.substring(1).split("/")[0];
+  const sKey = window.location.hash.substring(1).split("/")[1]
+    ? window.location.hash.substring(1).split("/")[1]
+    : "";
+  if (hash == "about") {
     about();
     document.getElementsByTagName("main")[0].classList.remove("mainload");
     ld.classList.add("hide");
     navbar("aboutLink");
     return;
   }
-  http.open("Get", url + route + "&searchKey=" + hash);
+  http.open("Get", url + routes[hash] + "&searchKey=" + sKey);
+  console.log(url + routes[hash] + "&searchKey=" + sKey);
   http.send();
   http.onerror = (e, r) => {
     document.getElementsByTagName(
@@ -102,24 +101,17 @@ const getData = async () => {
   };
   http.onload = () => {
     const data = JSON.parse(http.responseText);
-    if (routes[path] == "?type=list") {
+    if (routes[hash] == "?type=list") {
       document.title = Utility.title;
       htmlListData = listMap(data);
       navbar("mLink");
     }
-    if (
-      (routes[path] == "?type=genreList") |
-      (routes[path] == "?type=artists")
-    ) {
+    if ((hash == "archive") | (hash == "artists")) {
       document.title =
-        Utility.title +
-        " - " +
-        (routes[path] == "?type=genreList" ? "آرشیو" : "هنرمندان");
-      routes[path] == "?type=genreList"
-        ? navbar("archiveLink")
-        : navbar("artistsLink");
+        Utility.title + " - " + (hash == "archive" ? "آرشیو" : "هنرمندان");
+      hash == "archive" ? navbar("archiveLink") : navbar("artistsLink");
       htmlListData = data.map((item) => {
-        return `<li class='shadow-sm f-vazir d-flex' onclick="window.event.target.href='/#${item}' ,route()" name="${item}">
+        return `<li class='shadow-sm f-vazir d-flex' onclick="window.event.target.href='#main/${item}' ,route()" name="${item}">
           <div class="card-command">
             <a class="card-btn">${item}</a></div>
           </div>
@@ -147,8 +139,8 @@ const listMap = (data) => {
   </button>
   <label><strong>آلبوم ${item.Title}</strong></label>
   </div class="card">
-    <label><a class="card-btn card-lbl" onclick="window.event.target.href='/#${item.Artist}' ,route()">${item.Artist}</a></label>
-    <label><a class="card-btn card-lbl" onclick="window.event.target.href='/#${item.Genre}' ,route()">${item.Genre}</a></label>
+    <label><a class="card-btn card-lbl" onclick="window.event.target.href='#main/${item.Artist}' ,route()">${item.Artist}</a></label>
+    <label><a class="card-btn card-lbl" onclick="window.event.target.href='#main/${item.Genre}' ,route()">${item.Genre}</a></label>
   </div>
   <div class="card">
     <div>${item.Duration}</div>
