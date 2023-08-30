@@ -90,7 +90,6 @@ const getData = async () => {
     return;
   }
   http.open("Get", url + routes[hash] + "&searchKey=" + sKey);
-  console.log(url + routes[hash] + "&searchKey=" + sKey);
   http.send();
   http.onerror = (e, r) => {
     document.getElementsByTagName(
