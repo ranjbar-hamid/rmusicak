@@ -73,7 +73,7 @@ const getData = async () => {
     "https://script.google.com/macros/s/AKfycbw8zy5vVKWyQfO4ov6GBuuplfZJL0Ao7yku5L6gddLs41NSSPxmN7OM426SI0j4IqGrHg/exec";
   document.title = Utility.title;
   const http = new XMLHttpRequest();
-
+  navbar();
   document.getElementsByTagName("main")[0].classList.add("mainload");
   ld.classList.remove("hide");
   let ul = "<ul class='d-flex'>";
@@ -97,6 +97,7 @@ const getData = async () => {
     )[0].innerHTML = `<h3 class='error'>خطای ارتباطی</h3>`;
     document.getElementsByTagName("main")[0].classList.remove("mainload");
     ld.classList.add("hide");
+    navbar();
   };
   http.onload = () => {
     const data = JSON.parse(http.responseText);
@@ -125,7 +126,6 @@ const getData = async () => {
     document.getElementsByTagName("main")[0].classList.remove("mainload");
     ld.classList.add("hide");
   };
-  navbar();
 };
 
 const listMap = (data) => {
