@@ -92,6 +92,7 @@ img {
     border-radius: 0.3rem;
     border: 0.15rem solid var(--color-primary);
     box-shadow: 0 0 0.1rem gold;
+    aspect-ratio: 1 / 1;
 }
 
 .about {
@@ -196,6 +197,7 @@ img {
 }
 
 .card-play>img {
+    aspect-ratio: 1 / 1;
     filter: invert(25%);
 }
 
