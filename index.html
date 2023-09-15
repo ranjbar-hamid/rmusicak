@@ -8,10 +8,14 @@
       type="image/x-icon"
       href="https://drive.google.com/u/0/uc?id=14XfFqnVQO-7pQpdyW2J7hhpo5UplueAC&export=download"
     />
+    <link rel="canonical" href="https://radiomusicak.com" />
     <meta
       name="description"
       content="رادیو موزیکک | رمیکس آلبوم های موسیقی ایران و جهان"
     />
+    <meta property="og:title" content="میکس رادیویی آلبوم های موسیقی" />
+    <meta property="og:url" content="https://radiomusicak.com" />
+    <meta property="og:type" content="music" />
     <link rel="stylesheet" href="UI/ui.css" />
     <title>رادیو موزیکک</title>
   </head>
@@ -26,7 +30,7 @@
           tg="linkGroup"
           onclick="window.event.target.href='#main',route()"
         >
-          <h2>موزیکـک</h2>
+          <h1>موزیکـک</h1>
         </button>
         <button class="btn lg-none t-button" aria-label="toggle"></button>
       </div>
@@ -67,6 +71,7 @@
             id="btnSearch"
             class="btn s-button"
             type="button"
+            name="جستجو"
             onclick="window.event.target.href='#main/'+searchBox.value,route()"
           >
             <svg
@@ -91,6 +96,7 @@
       <img
         id="pImage"
         src="https://drive.google.com/u/0/uc?id=14XfFqnVQO-7pQpdyW2J7hhpo5UplueAC&export=download"
+        alt="RadioMusicak"
       />
     </footer>
     <script src="UI/ui.js"></script>
