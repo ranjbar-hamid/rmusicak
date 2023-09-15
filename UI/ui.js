@@ -133,10 +133,10 @@ const listMap = (data) => {
     return `<li class='shadow-sm f-vazir d-flex'>
   <div class="card">
     <button class="card-btn card-play" id='${item.URL}' d-i='${item.PicID}' onClick="play(this)">
-    <img fetchpriority="low" src="${item.PicID}" alt="" loading="lazy">
+    <img fetchpriority="low" src="${item.PicID}" alt="RadioMusicak" loading="lazy">
   <div>${Utility.iconPlay}</div>
   </button>
-  <label><strong>آلبوم ${item.Title}</strong></label>
+  <label><h4>آلبوم ${item.Title}</h4></label>
   </div class="card">
     <label><a class="card-btn card-lbl" onclick="window.event.target.href='#main/${item.Artist}' ,route()">${item.Artist}</a></label>
     <label><a class="card-btn card-lbl" onclick="window.event.target.href='#main/${item.Genre}' ,route()">${item.Genre}</a></label>
