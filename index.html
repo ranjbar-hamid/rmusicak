@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="رادیو موزیکک | Radio Musicak" />
     <meta property="og:url" content="https://radiomusicak.com" />
     <meta property="og:type" content="music" />
-    <meta property="og:description" content="میکس البوم های گروه ها و خواننده های موسیقی قدیمی و جدید ایران و جهان" />
+    <meta property="og:description" content="میکس البوم های گروه ها و خاننده های موسیقی قدیمی و جدید ایران و جهان" />
     <link rel="stylesheet" href="UI/ui.css" />
     <title>رادیو موزیکک</title>
   </head>
@@ -30,9 +30,9 @@
           id="mLink"
           class="nav-link f-title bg-tparent active-link"
           tg="linkGroup"
-          onclick="window.event.target.href='#main',route()"
+          onclick="window.event.target.href='#home',route()"
         >
-          <h1>موزیکـک</h1>
+          <h2>موزیکـک</h2>
         </button>
         <button class="btn lg-none t-button" aria-label="toggle"></button>
       </div>
@@ -67,14 +67,14 @@
             class="t-box border-0 w-100 f-input bg-tparent"
             type="text"
             placeholder="جستجو..."
-            onkeypress="if(event.keyCode==13){window.event.target.href='#main/'+searchBox.value,route()}"
+            onkeypress="if(event.keyCode==13){window.event.target.href='#list/'+searchBox.value,route()}"
           />
           <button
             id="btnSearch"
             class="btn s-button"
             type="button"
-            name="جستجو"
-            onclick="window.event.target.href='#main/'+searchBox.value,route()"
+            aria-label="جستجو"
+            onclick="window.event.target.href='#list/'+searchBox.value,route()"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,8 +91,10 @@
           </button>
         </div>
       </nav>
+      <div id="brand" class="brand sm-none"></div>
     </header>
-    <main class="mainload"></main>
+    <main class="mainload">
+    </main>
     <footer class="back-blur d-flex fix w-100">
       <audio id="player" controls></audio>
       <img
