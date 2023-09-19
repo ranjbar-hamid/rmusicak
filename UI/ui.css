@@ -1,5 +1,5 @@
 :root {
-    --color-primary: rgb(35, 31, 70);
+    --color-primary: #393572;
     --color-2: rgba(255, 255, 255, 0.2);
     --color-3: rgba(255, 255, 255, 0.3);
     --color-4: rgba(255, 255, 255, 0.4);
@@ -16,9 +16,14 @@
 
 h1,
 h2,
+h3,
+h4,
+h5,
+h6,
 body {
     margin: 0;
     padding: 0;
+    font-size: 1.2rem;
 }
 
 body {
@@ -45,7 +50,7 @@ header {
 
 main {
     grid-area: main;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     padding: 0 5%;
 }
 
@@ -99,11 +104,14 @@ img {
     background-color: var(--color-6);
     margin-top: 1rem;
     padding: 1rem;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     border-radius: 0.4rem;
 }
 
+.mb-0{
+    margin-bottom: 0;
+}
 
 
 .nav-link {
@@ -201,9 +209,28 @@ img {
     filter: invert(25%);
 }
 
+.btn-prim {
+    display: flex;
+    justify-content: start;
+    font-size: 1.05rem;
+    border: solid var(--color-2);
+    border-radius: 5rem;
+    padding: 0.1rem 1.5rem;
+    margin: 1rem;
+    width: 10rem;
+}
+
+.btn-prim:hover {
+    background-color: transparent;
+}
+
+.btn-prim:active {
+    transform: scale(1.05);
+}
+
 label {
     display: inline;
-    width: 6rem;
+    width: 9rem;
 }
 
 audio {
@@ -267,6 +294,10 @@ audio {
     width: 100%;
 }
 
+.w-75 {
+    width: 75%;
+}
+
 .bg-tparent {
     background-color: transparent;
 }
@@ -297,6 +328,27 @@ audio {
     width: 2rem;
     height: 2rem;
     animation: spinner 1.2s linear infinite;
+}
+
+.al {
+    display: flex;
+    align-items: center;
+}
+
+.self-end {
+    align-self: self-end;
+}
+
+.brand {
+    z-index: -500;
+    position: fixed;
+    left: 8.5rem;
+    top: 0.55rem;
+    transform: scale(0.8)
+}
+
+.self-start {
+    align-self: self-start;
 }
 
 @keyframes spinner {
@@ -388,10 +440,29 @@ audio {
 
     .about {
         margin: 1rem 0.4rem 3.2rem 0.4rem;
+        flex-direction: column;
+    }
+    .mb-0{
+        margin-bottom: 0;
     }
 
+    .end-order {
+        order: -10;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+    .brand {
+        z-index: 100;
+        position: fixed;
+        left: 2rem;
+        top: 0.8rem;
+    }
     label {
         display: inline;
-        width: 3rem;
+        width: 7rem;
     }
+
 }
