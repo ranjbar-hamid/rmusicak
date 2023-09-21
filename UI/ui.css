@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #393572;
+    --color-primary: linear-gradient(90deg, #4F5AA8 0%, #7481CF 53% ,#4F5AA8 85%);
     --color-2: rgba(255, 255, 255, 0.2);
     --color-3: rgba(255, 255, 255, 0.3);
     --color-4: rgba(255, 255, 255, 0.4);
@@ -27,7 +27,7 @@ body {
 }
 
 body {
-    background-color: var(--color-primary);
+    background: var(--color-primary) fixed;
 
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -54,7 +54,8 @@ main {
     padding: 0 5%;
 }
 
-footer {
+
+.player-panel {
     background-color: var(--color-6);
 
     grid-area: footer;
@@ -100,16 +101,21 @@ img {
     aspect-ratio: 1 / 1;
 }
 
-.about {
+.card-panel {
     background-color: var(--color-6);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
     padding: 1rem;
     flex-direction: row;
     align-items: center;
     border-radius: 0.4rem;
 }
 
-.mb-0{
+.card-panel ul {
+    padding-bottom: 0;
+}
+
+.mb-0 {
     margin-bottom: 0;
 }
 
@@ -260,7 +266,8 @@ audio {
 
 .f-title {
     font-family: vazir;
-    font-size: 0.7rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .f-input {
@@ -349,6 +356,21 @@ audio {
 
 .self-start {
     align-self: self-start;
+}
+
+.m-first{
+    margin-top: 1rem;
+}
+
+.mb-f{
+    background-color: var(--color-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: vazir;
+    padding: 0.3rem;
+    font-size: 0.75rem;
+    margin-bottom: 4.3rem;
 }
 
 @keyframes spinner {
@@ -442,7 +464,8 @@ audio {
         margin: 1rem 0.4rem 3.2rem 0.4rem;
         flex-direction: column;
     }
-    .mb-0{
+
+    .mb-0 {
         margin-bottom: 0;
     }
 
@@ -454,15 +477,25 @@ audio {
         display: flex;
         flex-direction: column;
     }
+
     .brand {
         z-index: 100;
         position: fixed;
         left: 2rem;
         top: 0.8rem;
     }
+
+    .m-first{
+        margin-top: 1.3rem;
+    }
+
     label {
         display: inline;
-        width: 7rem;
+        width: 4rem;
+    }
+
+    .mb-f{
+        margin-bottom: 3.8rem;
     }
 
 }
