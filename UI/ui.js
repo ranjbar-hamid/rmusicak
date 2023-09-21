@@ -187,10 +187,41 @@ const listMap = (data) => {
   });
 };
 
+home = () => {
+  document.getElementsByTagName(
+    "main"
+  )[0].innerHTML = `<article class="card-panel d-flex mb-0 m-first">
+    <div>
+      <h1 class="f-vazir self-start ">بهترین لحظات آلبوم های موسیقی را اینجا بشنوید.</h1>
+      <button class="f-vazir btn-prim self-start al" onclick="window.event.target.href='#archive',route()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" viewBox="-4 0 16 16">
+          <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+          <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+          <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+        </svg>
+        <strong>آرشیو</strong>
+      </button>
+      <button class="f-vazir btn-prim self-start al" onclick="window.event.target.href='#artists',route()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" viewBox="-4 0 16 16">
+        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        </svg>
+        <strong>هنرمندان</strong>
+      </button>
+    </div>
+    </article>
+    <article class="card-panel">
+      <h2 class="f-vazir self-start ">جدیدترین ها</h2>
+      <div id="shList"></div>
+    </article>
+    ${footer()}`;
+  document.title = Utility.title;
+};
+
 about = () => {
   document.getElementsByTagName(
     "main"
-  )[0].innerHTML = `<article class="about d-flex">
+  )[0].innerHTML = `<article class="card-panel d-flex">
       <h3 class="f-vazir">رادیو موزیکک</h3>
       <p class="f-vazir">رسانه موسیقی</p>
       <div>
@@ -209,35 +240,14 @@ about = () => {
   document.title = Utility.title + " - " + "معرفی";
 };
 
-home = () => {
-  document.getElementsByTagName(
-    "main"
-  )[0].innerHTML = `<article class="about d-flex mb-0">
-    <div>
-      <h1 class="f-vazir self-start ">بهترین لحظات آلبوم های موسیقی را اینجا گوش دهید.</h1>
-      <button class="f-vazir btn-prim self-start al" onclick="window.event.target.href='#archive',route()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" viewBox="-4 0 16 16">
-          <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
-          <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
-          <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
-        </svg>
-        <strong>آرشیو</strong>
-      </button>
-      <button class="f-vazir btn-prim self-start al" onclick="window.event.target.href='#artists',route()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" viewBox="-4 0 16 16">
-        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
-          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-        </svg>
-        <strong>هنرمندان</strong>
-      </button>
-    </div>
-    </article>
-    <article class="about">
-      <h2 class="f-vazir self-start ">جدیدترین ها</h2>
-      <div id="shList"></div>
-    </article>`;    
-  document.title = Utility.title;
-};
+footer = ()=>{
+  return `
+    <footer class="card-panel mb-f">
+      <span>طراحی، پیاده سازی، اجرا </span>
+      <span>h.ranjbar.net@gmail.com</span>
+    </footer>
+  `;
+}
 
 function play(e) {
   player.src = e.id;
