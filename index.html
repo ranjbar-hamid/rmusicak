@@ -32,7 +32,7 @@
           tg="linkGroup"
           onclick="window.event.target.href='#home',route()"
         >
-          <h2>موزیکـک</h2>
+          <span class="f-title">موزیکـک</span>
         </button>
         <button class="btn lg-none t-button" aria-label="toggle"></button>
       </div>
@@ -43,7 +43,7 @@
           tg="linkGroup"
           onclick="window.event.target.href='#archive',route()"
         >
-          <h2>آرشیو</h2>
+          <span class="f-title">آرشیو</span>
         </button>
         <button
           id="artistsLink"
@@ -51,7 +51,7 @@
           tg="linkGroup"
           onclick="window.event.target.href='#artists',route()"
         >
-          <h2>هنرمندان</h2>
+          <span class="f-title">هنرمندان</span>
         </button>
         <button
           id="aboutLink"
@@ -59,7 +59,7 @@
           tg="linkGroup"
           onclick="window.event.target.href='#about',route()"
         >
-          <h2>ارتباط با ما</h2>
+          <span class="f-title">ارتباط با ما</span>
         </button>
         <div class="input-box d-flex sm-pad-link">
           <input
@@ -95,14 +95,14 @@
     </header>
     <main class="mainload">
     </main>
-    <footer class="back-blur d-flex fix w-100">
+    <div class="player-panel back-blur d-flex fix w-100">
       <audio id="player" controls></audio>
       <img
         id="pImage"
         src="https://drive.google.com/u/0/uc?id=14XfFqnVQO-7pQpdyW2J7hhpo5UplueAC&export=download"
         alt="RadioMusicak"
       />
-    </footer>
+    </div>
     <script src="UI/ui.js"></script>
   </body>
 </html>
