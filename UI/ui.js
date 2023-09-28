@@ -152,7 +152,7 @@ const listMap = (data) => {
     return `<li class='shadow-sm f-vazir d-flex'>
   <div class="al">
     <button class="card-btn card-play" id='${item.URL}' d-i='${item.PicID}' onClick="play(this)">
-    <img fetchpriority="low" src="${item.PicID}" alt="RadioMusicak" loading="lazy">
+    <img fetchpriority="low" src="${item.PicID}" alt="${item.Title}" loading="lazy">
   <div>${Utility.iconPlay}</div>
   </button>
   <label><strong>آلبوم ${item.Title}</strong></label>
@@ -190,7 +190,7 @@ home = () => {
         <strong>هنرمندان</strong>
       </button>
     </div>
-    <img class="homeIMG" src="https://drive.google.com/u/0/uc?id=1TubgLvb67TGVRCRZr2th4-BJYAcRlb37&export=download">
+    <img class="homeIMG" src="https://drive.google.com/u/0/uc?id=1TubgLvb67TGVRCRZr2th4-BJYAcRlb37&export=download"  alt="رادیو موزیکک">
     </article>
     <article class="card-panel">
       <h2 class="f-vazir self-start "></h2>
@@ -219,7 +219,7 @@ about = () => {
           </svg> کست باکس
         </a>
       </div>
-      <img class="homeIMG" src="https://drive.google.com/u/0/uc?id=1gEaw-VFd9sZiCD54sfIO2FS2sROaiUoN&export=download">
+      <img class="homeIMG" src="https://drive.google.com/u/0/uc?id=1gEaw-VFd9sZiCD54sfIO2FS2sROaiUoN&export=download" alt="رادیو موزیکک">
     </article>
     ${footer()}`;
   document.title = Utility.title + " - " + "معرفی";
