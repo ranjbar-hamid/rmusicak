@@ -190,7 +190,7 @@ home = () => {
         <strong>هنرمندان</strong>
       </button>
     </div>
-    <img class="homeIMG" src="https://drive.google.com/u/0/uc?id=1TubgLvb67TGVRCRZr2th4-BJYAcRlb37&export=download"  alt="رادیو موزیکک">
+    <img class="homeIMG" src="https://lh3.google.com/u/0/d/1TubgLvb67TGVRCRZr2th4-BJYAcRlb37"  alt="رادیو موزیکک">
     </article>
     <article class="card-panel">
       <h2 class="f-vazir self-start "></h2>
@@ -219,7 +219,7 @@ about = () => {
           </svg> کست باکس
         </a>
       </div>
-      <img class="homeIMG" src="https://drive.google.com/u/0/uc?id=1gEaw-VFd9sZiCD54sfIO2FS2sROaiUoN&export=download" alt="رادیو موزیکک">
+      <img class="homeIMG" src="https://lh3.google.com/u/0/d/1gEaw-VFd9sZiCD54sfIO2FS2sROaiUoN" alt="رادیو موزیکک">
     </article>
     ${footer()}`;
   document.title = Utility.title + " - " + "معرفی";
